@@ -1,0 +1,51 @@
+.keyword{width:260px;border:2px;height:25px;line-height:21px;vertical-align:middle;border:1px solid #7f9eba;font-size:12px;margin-right:5px;}
+.search-bar dd{font-size:0.75em;float:left;height:27px;line-height:27px;padding:18px 0;}
+.search-bar2{ padding:10px 0 0 20px;height:79px;text-align:center;line-height:27px;}
+.search-bar2 dd{font-size:0.75em;float:left;height:27px;line-height:27px;padding:18px 0;}
+
+/*body{ font-size:14px; padding:0px; margin:0px; font-family:arial;}*/
+.SubCon{font-size:14px; font-family:Arial;}
+form{ padding:0px; margin:0px;}
+b{ font-weight:bold;color:#C60A00; }
+
+dl dd a{color:red; text-decoration:none;font-size:12px;}
+dl dd a:hover{text-decoration:underline; color:#333333;}
+
+#info{background:#D9E1F7;height:20px; line-height:20px; padding-left:5px; padding-right:5px; font-size:12px;clear:both;}
+#result{ padding:5px;}
+.article{ padding-bottom:20px;}
+.title{padding:2px;font-size:1.1em;}
+.content1{ line-height:150%;font-size:0.9em;}
+.link{color:#008000;padding:2px;font-size:0.9em;}
+#pager{ text-align:center; }
+.error li{ padding-left:30px; line-height:23px}
+.tps_btn{background:none repeat scroll 0 0 #E5EDF2;border-color:#BBBBBB #666666 #666666 #BBBBBB;width:60px;height:28px;
+         border-style:solid; border-width:1px; margin-right:3px;}
+.tfm{width:100%; margin-top:20px;}
+.tfm th{font-weight:500; width: 140px;}
+.tfm td{padding: 10px 2px;}
+.pn {
+    background: none repeat scroll 0 0 #E5EDF2;
+    border-color: #C2D5E3 #336699 #336699 #C2D5E3;
+    border-style: solid;
+    border-width: 1px;
+    color: #336699;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    height: 26px;
+    line-height: 26px;
+    margin-right: 3px;
+    overflow: visible;
+    vertical-align: middle;
+    z-index: 0;
+    margin-left:150px;
+}
+.SearchForTitle{ background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #707070 #CECECE #CECECE #707070;
+    border-style: solid;
+    border-width: 1px;
+    color: #666666;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 2px 4px;}

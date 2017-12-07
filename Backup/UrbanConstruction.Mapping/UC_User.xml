@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="UC_User" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="UC_User" type="UrbanConstruction.Model.UC_User, UrbanConstruction.Model" />
+  </alias>
+  <resultMaps>
+    <resultMap id="SelectResult" class="UC_User">
+      <result property="UserID" column="userid" />
+      <result property="UserHao" column="userhao" />
+      <result property="UserName" column="username" />
+      <result property="PassWord" column="password" />
+      <result property="UserType" column="usertype" />
+      <result property="State" column="state" />
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="FindById" parameterClass="int" resultMap="SelectResult">
+      Select
+      userid,
+      userhao,
+      username,
+      password,
+      usertype,
+      state
+      From UC_User
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          userid=#UserID#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    <select id="FindByName" parameterClass="int" resultMap="SelectResult">
+      Select
+      userid,
+      userhao,
+      username,
+      password,
+      usertype,
+      state
+      From UC_User
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          username=#UserName#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    <select id="BaseSelect" parameterClass="int" resultMap="SelectResult">
+      Select
+      userid,
+      userhao,
+      username,
+      password,
+      usertype,
+      state
+      From UC_User
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          $strWhere$
+        </isParameterPresent>
+      </dynamic>
+    </select>
+
+    <select id="ChildSelectUC_User" parameterClass="int" resultMap="SelectResult" extends="BaseSelect">
+
+    </select>
+
+    <insert id="Insert" parameterClass="UC_User">
+      Insert Into UC_User (
+      userhao,
+      username,
+      password,
+      usertype,
+      state
+      )Values(
+      #UserHao#,
+      #UserName#,
+      #PassWord#,
+      #UserType#,
+      #State#
+      )
+    </insert>
+
+    <update id="Update" parameterClass="UC_User">
+      Update UC_User Set
+      userhao=#UserHao#,
+      username=#UserName#,
+      password=#PassWord#,
+      usertype=#UserType#,
+      state=#State#
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          userid=#UserID#
+        </isParameterPresent>
+      </dynamic>
+    </update>
+
+    <delete id="Delete" parameterClass="int">
+      Delete From UC_User
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          userid=#UserID#
+        </isParameterPresent>
+      </dynamic>
+    </delete>
+
+    <procedure id="PageFindAll" parameterMap="ParaPageFindAll" resultMap="SelectResult">
+      ProcPage
+    </procedure>
+    <procedure id="PageFindAllCount" parameterMap="ParaPageFindAll">
+      ProcPage
+    </procedure>
+  </statements>
+  <parameterMaps>
+    <parameterMap id="ParaPageFindAll" class="Hashtable">
+      <parameter property="tblName" column="" direction="Input" />
+      <parameter property="fldName" column="" direction="Input" />
+      <parameter property="PageSize" column="" direction="Input" />
+      <parameter property="PageIndex" column="" direction="Input" />
+      <parameter property="IsCount" column="" direction="Input" />
+      <parameter property="OrderType" column="" direction="Input" />
+      <parameter property="strWhere" column="" direction="Input" />
+    </parameterMap>
+  </parameterMaps>
+</sqlMap>

@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="UC_Pictures" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="UC_Pictures" type="UrbanConstruction.Model.UC_Pictures, UrbanConstruction.Model" />
+  </alias>
+  <resultMaps>
+    <resultMap id="SelectResult" class="UC_Pictures">
+      <result property="PictureID" column="pictureid" />
+      <result property="PictureName" column="picturename" />
+      <result property="PictureURL" column="pictureurl" />
+      <result property="AddTime" column="addtime" />
+      <result property="State" column="state" />
+      <result property="Type" column="type" />
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="FindById" parameterClass="int" resultMap="SelectResult">
+      Select
+      pictureid,
+      picturename,
+      pictureurl,
+      addtime,
+      state,type
+      From UC_Pictures
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          pictureid=#PictureID#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+
+    <select id="GetList" parameterClass="int" resultMap="SelectResult">
+      Select
+      top
+      $strNum$
+      pictureid,
+      picturename,
+      pictureurl,
+      addtime,
+      state,type
+      From UC_Pictures
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          $strWhere$
+        </isParameterPresent>
+      </dynamic>
+      order by addtime desc
+    </select>
+    
+    <select id="GetAllList" resultMap="SelectResult">
+      Select
+      pictureid,
+      picturename,
+      pictureurl,
+      addtime,
+      state,type
+      From UC_Pictures
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          $strWhere$
+        </isParameterPresent>
+      </dynamic>
+      order by addtime desc
+    </select>
+    
+    <insert id="Insert" parameterClass="UC_Pictures">
+      Insert Into UC_Pictures (
+      picturename,
+      pictureurl,
+      addtime,
+      state,type
+      )Values(
+      #PictureName#,
+      #PictureURL#,
+      #AddTime#,
+      #State#,#Type#
+      )
+    </insert>
+
+    <update id="Update" parameterClass="UC_Pictures">
+      Update UC_Pictures Set
+      picturename=#PictureName#,
+      pictureurl=#PictureURL#,
+      addtime=#AddTime#,
+      state=#State#,
+      type=#Type#
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          pictureid=#PictureID#
+        </isParameterPresent>
+      </dynamic>
+    </update>
+
+    <delete id="Delete" parameterClass="int">
+      Delete From UC_Pictures
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          pictureid=#PictureID#
+        </isParameterPresent>
+      </dynamic>
+    </delete>
+
+    <procedure id="PageFindAll" parameterMap="ParaPageFindAll" resultMap="SelectResult">
+      ProcPage
+    </procedure>
+    <procedure id="PageFindAllCount" parameterMap="ParaPageFindAll">
+      ProcPage
+    </procedure>
+  </statements>
+  <parameterMaps>
+    <parameterMap id="ParaPageFindAll" class="Hashtable">
+      <parameter property="tblName" column="" direction="Input" />
+      <parameter property="fldName" column="" direction="Input" />
+      <parameter property="PageSize" column="" direction="Input" />
+      <parameter property="PageIndex" column="" direction="Input" />
+      <parameter property="IsCount" column="" direction="Input" />
+      <parameter property="OrderType" column="" direction="Input" />
+      <parameter property="strWhere" column="" direction="Input" />
+    </parameterMap>
+  </parameterMaps>
+</sqlMap>

@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="UC_DownLoad" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="UC_DownLoad" type="UrbanConstruction.Model.UC_DownLoad, UrbanConstruction.Model" />
+  </alias>
+  <resultMaps>
+    <resultMap id="SelectResult" class="UC_DownLoad">
+      <result property="ID" column="id" />
+      <result property="M_ItemID" column="m_itemid" />
+      <result property="M_ID" column="m_id" />
+      <result property="FileName" column="filename" />
+      <result property="AddTime" column="addtime" />
+      <result property="Remark" column="remark" />
+      <result property="State" column="state" />
+      <result property="FileFact" column="filefact" />
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="FindById" parameterClass="int" resultMap="SelectResult">
+      Select
+      id,
+      m_itemid,
+      m_id,
+      filename,
+      addtime,
+      remark,
+      state,filefact
+      From UC_DownLoad
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          id=#ID#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+
+    <select id="BaseSelect" parameterClass="int" resultMap="SelectResult">
+      Select
+      id,
+      m_itemid,
+      m_id,
+      filename,
+      addtime,
+      remark,
+      state,filefact
+      From UC_DownLoad
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          $strWhere$
+        </isParameterPresent>
+      </dynamic>
+    </select>
+
+    <select id="ChildSelectUC_DownLoad" parameterClass="int" resultMap="SelectResult" extends="BaseSelect">
+
+    </select>
+    <select id="GetList" parameterClass="int" resultMap="SelectResult">
+      Select
+      top
+      $strNum$
+      id,
+      m_itemid,
+      m_id,
+      filename,
+      addtime,
+      remark,
+      state,filefact
+      From UC_DownLoad
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          $strWhere$
+        </isParameterPresent>
+      </dynamic>
+      order by remark desc, addtime desc
+    </select>
+
+    <select id="GetAllList" resultMap="SelectResult">
+      Select
+      id,
+      m_itemid,
+      m_id,
+      filename,
+      addtime,
+      remark,
+      state,filefact
+      From UC_DownLoa
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          $strWhere$
+        </isParameterPresent>
+      </dynamic>
+      order by  addtime desc
+    </select>
+    
+    <insert id="Insert" parameterClass="UC_DownLoad">
+      Insert Into UC_DownLoad (
+      m_itemid,
+      m_id,
+      filename,
+      addtime,
+      remark,
+      state,filefact
+      )Values(
+      #M_ItemID#,
+      #M_ID#,
+      #FileName#,
+      #AddTime#,
+      #Remark#,
+      #State#,#FileFact#
+      )
+    </insert>
+
+    <update id="Update" parameterClass="UC_DownLoad">
+      Update UC_DownLoad Set
+      m_itemid=#M_ItemID#,
+      m_id=#M_ID#,
+      filename=#FileName#,
+      addtime=#AddTime#,
+      remark=#Remark#,
+      state=#State#,filefact=#FileFact#
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          id=#ID#
+        </isParameterPresent>
+      </dynamic>
+    </update>
+    <update id="BatchUpdate" parameterClass="UC_DownLoad">
+      Update UC_DownLoad Set
+      m_id=#M_ID#
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          m_itemid=#M_ItemID#
+        </isParameterPresent>
+      </dynamic>
+    </update>
+    <delete id="Delete" parameterClass="int">
+      Delete From UC_DownLoad
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          id=#ID#
+        </isParameterPresent>
+      </dynamic>
+    </delete>
+    <procedure id="PageFindAll" parameterMap="ParaPageFindAll" resultMap="SelectResult">
+      ProcPage
+    </procedure>
+    <procedure id="PageFindAllCount" parameterMap="ParaPageFindAll">
+      ProcPage
+    </procedure>
+  </statements>
+  <parameterMaps>
+    <parameterMap id="ParaPageFindAll" class="Hashtable">
+      <parameter property="tblName" column="" direction="Input" />
+      <parameter property="fldName" column="" direction="Input" />
+      <parameter property="PageSize" column="" direction="Input" />
+      <parameter property="PageIndex" column="" direction="Input" />
+      <parameter property="IsCount" column="" direction="Input" />
+      <parameter property="OrderType" column="" direction="Input" />
+      <parameter property="strWhere" column="" direction="Input" />
+    </parameterMap>
+  </parameterMaps>
+</sqlMap>

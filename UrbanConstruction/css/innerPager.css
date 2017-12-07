@@ -1,0 +1,26 @@
+@charset "utf-8";
+/*===========================================图片列表样式===========================================*/
+.img_list_title{ background:url(../images/ink_line.gif) left bottom no-repeat; height:40px;}
+.img_list_title h2{ background:url(../images/title_ico.gif) 5px center no-repeat; font:18px/40px '微软雅黑'; padding-left:35px;}
+.img_header:after{ content:"."; line-height:0; height:0; clear:both; visibility:hidden;}
+.img_header a{ display:inline-block; padding:0 10px; margin:15px 5px; font:14px/24px '微软雅黑';}
+.img_header a.first{ margin-left:25px;}
+.img_header a.current{ background:#900; color:#fff;}
+.img_header a.current:hover{ color:#fff;}
+.img_header a:hover{ color:#900;}
+
+/* item_list */
+.img_list{ margin:0 auto; padding-left:0px; overflow:hidden;}
+.item_list{position:relative;padding:0 0 50px;}
+.item{
+	width:235px;background:#fff;overflow:hidden;margin:0 0 15px 0;
+	border-radius:3px 3px 3px 3px;
+	box-shadow:0 1px 3px rgba(34, 25, 25, 0.2);	
+}
+.item_t{padding:10px 8px 0;}
+.item_t .img{background-color:#FFFFFF;margin:0 auto;position:relative;width:219px;}
+.item_t .img a{display:block;}
+.item_t .img a:hover{background:#000;}
+.item_t .img a:hover img{filter:alpha(opacity=80);-khtml-opacity:0.8;opacity:0.8;-webkit-transition:all 0.3s ease-out;-khtml-transition:all 0.3s ease-out;}
+.item_t .title{padding:8px 0;line-height:18px;}
+

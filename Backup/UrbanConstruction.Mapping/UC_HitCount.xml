@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="UC_HitCount" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="UC_HitCount" type="UrbanConstruction.Model.UC_HitCount, UrbanConstruction.Model" />
+  </alias>
+  <resultMaps>
+    <resultMap id="SelectResult" class="UC_HitCount">
+      <result property="ID" column="id" />
+      <result property="Count" column="count" />
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="FindById" parameterClass="int" resultMap="SelectResult">
+      Select top 1
+      id,
+      count
+      From UC_HitCount
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          id=#ID#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    <insert id="Insert" parameterClass="UC_HitCount">
+      Insert Into UC_HitCount (
+      id,
+      count
+      )Values(
+      #ID#,
+      #Count#
+      )
+    </insert>
+
+    <update id="Update" parameterClass="UC_HitCount">
+      Update UC_HitCount Set
+      count=#Count#
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          id=#ID#
+        </isParameterPresent>
+      </dynamic>
+    </update>
+
+
+  </statements>
+</sqlMap>

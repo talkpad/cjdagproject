@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="UC_Guestbook" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="UC_Guestbook" type="UrbanConstruction.Model.UC_Guestbook, UrbanConstruction.Model" />
+  </alias>
+  <resultMaps>
+    <resultMap id="SelectResult" class="UC_Guestbook">
+      <result property="ID" column="id" />
+      <result property="Title" column="title" />
+      <result property="Content" column="content" />
+      <result property="CateID" column="cateid" />
+      <result property="Name" column="name" />
+      <result property="Sex" column="sex" />
+      <result property="Other" column="other" />
+      <result property="Address" column="address" />
+      <result property="PostDate" column="postdate" />
+      <result property="IP" column="ip" />
+      <result property="Email" column="email" />
+      <result property="Phone" column="phone"/>
+      <result property="Number" column="number" />
+      <result property="WriteBackDate" column="writebackdate" />
+      <result property="WriteContent" column="writecontent" />
+      <result property="WriteBackUser" column="writebackuser" />
+      <result property="State" column="state" />
+      <result property="Icon" column="icon" />
+      <result property="Is_SendEmail" column="is_sendemail"/>
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="FindById" parameterClass="int" resultMap="SelectResult">
+      Select
+      id,
+      title,
+      content,
+      cateid,
+      name,
+      sex,
+      other,
+      address,
+      postdate,
+      ip,
+      email,
+      phone,
+      number,
+      writebackdate,
+      writecontent,
+      writebackuser,
+      state,
+      icon,
+      is_sendemail
+      From UC_Guestbook
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          id=#ID#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+
+    <select id="GetAllList" resultMap="SelectResult">
+      Select
+      id,
+      title,
+      content,
+      cateid,
+      name,
+      sex,
+      other,
+      address,
+      postdate,
+      ip,
+      email,
+      phone,
+      number,
+      writebackdate,
+      writecontent,
+      writebackuser,
+      state,
+      icon,
+      is_sendemail
+      From UC_Guestbook
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          $strWhere$
+        </isParameterPresent>
+      </dynamic>
+      order by postdate desc
+    </select>
+    
+    <insert id="Insert" parameterClass="UC_Guestbook">
+      Insert Into UC_Guestbook (
+      title,
+      content,
+      cateid,
+      name,
+      sex,
+      other,
+      address,
+      postdate,
+      ip,
+      email,
+      phone,
+      number,
+      writebackdate,
+      writecontent,
+      writebackuser,
+      state,
+      icon,
+      is_sendemail
+      )Values(
+      #Title#,
+      #Content#,
+      #CateID#,
+      #Name#,
+      #Sex#,
+      #Other#,
+      #Address#,
+      #PostDate#,
+      #IP#,
+      #Email#,
+      #Phone#,
+      #Number#,
+      #WriteBackDate#,
+      #WriteContent#,
+      #WriteBackUser#,
+      #State#,
+      #Icon#,
+      #Is_SendEmail#
+      )
+    </insert>
+
+    <update id="Update" parameterClass="UC_Guestbook">
+      Update UC_Guestbook Set
+      title= #Title#,
+      content= #Content#,
+      cateid= #CateID#,
+      name= #Name#,
+      sex=#Sex#,
+      other= #Other#,
+      address=#Address#,
+      postdate= #PostDate#,
+      ip=  #IP#,
+      email= #Email#,
+      phone= #Phone#,
+      number=#Number#,
+      writebackdate=  #WriteBackDate#,
+      writecontent= #WriteContent#,
+      writebackuser=#WriteBackUser#,
+      state=#State#,
+      icon= #Icon#,
+      is_sendemail= #Is_SendEmail#
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          id=#ID#
+        </isParameterPresent>
+      </dynamic>
+    </update>
+
+    <update id="Examine" parameterClass="UC_Guestbook">
+      Update UC_Guestbook Set
+      state=#State#
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          id=#ID#
+        </isParameterPresent>
+      </dynamic>
+    </update>
+
+
+    <delete id="Delete" parameterClass="int">
+      Delete From UC_Guestbook
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          id=#ID#
+        </isParameterPresent>
+      </dynamic>
+    </delete>
+
+    <procedure id="PageFindAll" parameterMap="ParaPageFindAll" resultMap="SelectResult">
+      ProcPage
+    </procedure>
+    <procedure id="PageFindAllCount" parameterMap="ParaPageFindAll">
+      ProcPage
+    </procedure>
+  </statements>
+  <parameterMaps>
+    <parameterMap id="ParaPageFindAll" class="Hashtable">
+      <parameter property="tblName" column="" direction="Input" />
+      <parameter property="fldName" column="" direction="Input" />
+      <parameter property="PageSize" column="" direction="Input" />
+      <parameter property="PageIndex" column="" direction="Input" />
+      <parameter property="IsCount" column="" direction="Input" />
+      <parameter property="OrderType" column="" direction="Input" />
+      <parameter property="strWhere" column="" direction="Input" />
+    </parameterMap>
+  </parameterMaps>
+</sqlMap>

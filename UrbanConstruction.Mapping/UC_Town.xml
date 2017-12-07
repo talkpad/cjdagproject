@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="UC_Town" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="UC_Town" type="UrbanConstruction.Model.UC_Town, UrbanConstruction.Model" />
+  </alias>
+  <resultMaps>
+    <resultMap id="SelectResult" class="UC_Town">
+      <result property="CompanyID" column="companyid" />
+      <result property="CompanyName" column="companyname" />
+      <result property="UserName" column="username" />
+      <result property="Password" column="password" />
+      <result property="Address" column="address" />
+      <result property="Phone" column="phone" />
+      <result property="Email" column="email" />
+      <result property="Ordering" column="ordering" />
+      <result property="State" column="state" />
+      <result property="Addtime" column="addtime" />
+      <result property="Synopsis" column="synopsis" />
+      <result property="WebUrl" column="weburl" />
+
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="Select" parameterClass="int" resultMap="SelectResult">
+      Select
+      companyid,
+      companyname,
+      username,
+      password,
+      address,
+      phone,
+      email,
+      ordering,
+      state,
+      addtime,
+      synopsis,
+      weburl
+      From UC_Town
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          companyid=#CompanyID#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+
+    <select id="FindByName" parameterClass="int" resultMap="SelectResult">
+      Select
+      companyid,
+      companyname,
+      username,
+      password,
+      address,
+      phone,
+      email,
+      ordering,
+      state,
+      addtime,
+      synopsis,
+      weburl
+      From UC_Town
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          username=#CompanyName#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+
+    <insert id="Insert" parameterClass="UC_Town">
+      Insert Into UC_Town (
+      companyname,
+      username,
+      password,
+      address,
+      phone,
+      email,
+      ordering,
+      state,
+      addtime,
+      synopsis,
+      weburl
+      )Values(
+      #CompanyName#,
+      #UserName#,
+      #Password#,
+      #Address#,
+      #Phone#,
+      #Email#,
+      #Ordering#,
+      #State#,
+      #Addtime#,
+      #Synopsis#,
+      #WebUrl#
+      )
+    </insert>
+
+    <update id="Update" parameterClass="UC_Town">
+      Update UC_Town Set
+
+      companyname=#CompanyName#,
+      username=#UserName#,
+      password=#Password#,
+      address=#Address#,
+      phone=#Phone#,
+      email=#Email#,
+      ordering=#Ordering#,
+      state=#State#,
+      addtime=#Addtime#,
+      synopsis=#Synopsis#,
+      weburl=#WebUrl#
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          companyid=#CompanyID#
+        </isParameterPresent>
+      </dynamic>
+    </update>
+
+    <delete id="Delete" parameterClass="int">
+      Delete From UC_Town
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          companyid=#CompanyID#
+        </isParameterPresent>
+      </dynamic>
+    </delete>
+    <procedure id="PageFindAll" parameterMap="ParaPageFindAll" resultMap="SelectResult">
+      ProcPage
+    </procedure>
+    <procedure id="PageFindAllCount" parameterMap="ParaPageFindAll">
+      ProcPage
+    </procedure>
+  </statements>
+  <parameterMaps>
+    <parameterMap id="ParaPageFindAll" class="Hashtable">
+      <parameter property="tblName" column="" direction="Input" />
+      <parameter property="fldName" column="" direction="Input" />
+      <parameter property="PageSize" column="" direction="Input" />
+      <parameter property="PageIndex" column="" direction="Input" />
+      <parameter property="IsCount" column="" direction="Input" />
+      <parameter property="OrderType" column="" direction="Input" />
+      <parameter property="strWhere" column="" direction="Input" />
+    </parameterMap>
+  </parameterMaps>
+</sqlMap>

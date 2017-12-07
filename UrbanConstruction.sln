@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrbanConstruction", "UrbanConstruction\UrbanConstruction.csproj", "{E5462207-49C5-4072-833C-8D762698CB5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrbanConstruction.Dao", "UrbanConstruction.Dao\UrbanConstruction.Dao.csproj", "{51A5C8F7-B9E6-413F-9892-BC1048B35138}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrbanConstruction.Mapping", "UrbanConstruction.Mapping\UrbanConstruction.Mapping.csproj", "{7DF4578B-B46B-4501-ADA7-101952E2F960}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrbanConstruction.Model", "UrbanConstruction.Model\UrbanConstruction.Model.csproj", "{28416759-3D3E-42C2-B952-2A656CAD84F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrbanConstruction.Service", "UrbanConstruction.Service\UrbanConstruction.Service.csproj", "{55D0BB6A-5D78-409A-9709-38299A1E166F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrbanConstruction.Component", "UrbanConstruction.Component\UrbanConstruction.Component.csproj", "{20714E3F-9686-4967-BB02-35E5DF1C8360}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetIndex", "GetIndex\GetIndex.csproj", "{326ED4BB-FAD8-40F1-A7AB-8BAF33135D57}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5462207-49C5-4072-833C-8D762698CB5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5462207-49C5-4072-833C-8D762698CB5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5462207-49C5-4072-833C-8D762698CB5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5462207-49C5-4072-833C-8D762698CB5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51A5C8F7-B9E6-413F-9892-BC1048B35138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51A5C8F7-B9E6-413F-9892-BC1048B35138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51A5C8F7-B9E6-413F-9892-BC1048B35138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51A5C8F7-B9E6-413F-9892-BC1048B35138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DF4578B-B46B-4501-ADA7-101952E2F960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DF4578B-B46B-4501-ADA7-101952E2F960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DF4578B-B46B-4501-ADA7-101952E2F960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DF4578B-B46B-4501-ADA7-101952E2F960}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28416759-3D3E-42C2-B952-2A656CAD84F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28416759-3D3E-42C2-B952-2A656CAD84F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28416759-3D3E-42C2-B952-2A656CAD84F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28416759-3D3E-42C2-B952-2A656CAD84F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55D0BB6A-5D78-409A-9709-38299A1E166F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55D0BB6A-5D78-409A-9709-38299A1E166F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55D0BB6A-5D78-409A-9709-38299A1E166F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55D0BB6A-5D78-409A-9709-38299A1E166F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20714E3F-9686-4967-BB02-35E5DF1C8360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20714E3F-9686-4967-BB02-35E5DF1C8360}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20714E3F-9686-4967-BB02-35E5DF1C8360}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20714E3F-9686-4967-BB02-35E5DF1C8360}.Release|Any CPU.Build.0 = Release|Any CPU
+		{326ED4BB-FAD8-40F1-A7AB-8BAF33135D57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{326ED4BB-FAD8-40F1-A7AB-8BAF33135D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{326ED4BB-FAD8-40F1-A7AB-8BAF33135D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{326ED4BB-FAD8-40F1-A7AB-8BAF33135D57}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

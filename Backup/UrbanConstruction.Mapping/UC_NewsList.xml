@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="UC_NewsList" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="UC_NewsList" type="UrbanConstruction.Model.UC_NewsList, UrbanConstruction.Model" />
+  </alias>
+  <resultMaps>
+    <resultMap id="SelectResult" class="UC_NewsList">
+      <result property="ID" column="id" />
+      <result property="Title" column="title" />
+      <result property="Content" column="content" />
+      <result property="ReleaseTime" column="releasetime" />
+      <result property="Source" column="source" />
+      <result property="Author" column="author" />
+      <result property="UpdateUserName" column="updateusername" />  
+      <result property="M_ID" column="m_id" />
+      <result property="M_ItemID" column="m_itemid" />
+      <result property="Pictures" column="pictures"/>
+      <result property="State" column="state"/>
+      <result property="Hits" column="hits" />
+      <result property="PictureURL" column="pictureurl"/>
+      <result property="StayTop" column="staytop"/>
+      <result property="Type" column="type"/>
+      <result property="Kind" column="kind"/>
+      <result property="Zngg" column="zngg"/>
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="FindById" parameterClass="int" resultMap="SelectResult">
+      Select
+      id,
+      title,
+      content,
+      releasetime,
+      source,
+      author,
+      updateusername,
+      m_id,
+      m_itemid,
+      pictures,
+      state,
+      hits,
+      pictureurl,
+      staytop,type,kind,zngg
+      From UC_NewsList
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          id=#ID#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+
+    <select id="BaseSelect" parameterClass="int" resultMap="SelectResult">
+      Select
+      id,
+      title,
+      content,
+      releasetime,
+      source,
+      author,
+      updateusername,
+      m_id,
+      m_itemid,
+      pictures,
+      state,
+      hits,
+      pictureurl,
+      staytop,type,kind,zngg
+      From UC_NewsList
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          $strWhere$
+        </isParameterPresent>
+      </dynamic>
+      order by staytop desc,releasetime desc
+    </select>
+    
+    <select id="GetList" parameterClass="int" resultMap="SelectResult">
+      Select
+      top
+      $strNum$
+      id,
+      title,
+      content,
+      releasetime,
+      source,
+      author,
+      updateusername,
+      m_id,
+      m_itemid,
+      pictures,
+      state,
+      hits,
+      pictureurl,
+      staytop,type,kind,zngg
+      From UC_NewsList
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          $strWhere$
+        </isParameterPresent>
+      </dynamic>
+      order by releasetime desc,staytop desc
+    </select>
+
+    <select id="GetAllList" resultMap="SelectResult">
+      Select
+      id,
+      title,
+      content,
+      releasetime,
+      source,
+      author,
+      updateusername,
+      m_id,
+      m_itemid,
+      pictures,
+      state,
+      hits,
+      pictureurl,
+      staytop,type,kind,zngg
+      From UC_NewsList
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          $strWhere$
+        </isParameterPresent>
+      </dynamic>
+      order by staytop desc,releasetime desc
+    </select>
+    
+    <select id="ChildSelectUC_NewsList" parameterClass="int" resultMap="SelectResult" extends="BaseSelect">
+
+    </select>
+
+    <insert id="Insert" parameterClass="UC_NewsList">
+      Insert Into UC_NewsList (
+      title,
+      content,
+      releasetime,
+      source,
+      author,
+      updateusername,
+      m_id,
+      m_itemid,
+      pictures,
+      state,
+      hits,
+      pictureurl,
+      staytop,type,kind,zngg
+      )Values(
+      #Title#,
+      #Content#,
+      #ReleaseTime#,
+      #Source#,
+      #Author#,
+      #UpdateUserName#,
+      #M_ID#,
+      #M_ItemID#,
+      #Pictures#,
+      #State#,
+      #Hits#,
+      #PictureURL#,
+      #StayTop#,#Type#,#Kind#,#Zngg#
+      )
+    </insert>
+
+    <update id="Update" parameterClass="UC_NewsList">
+      Update UC_NewsList Set
+      title=#Title#,
+      content=#Content#,
+      releasetime=#ReleaseTime#,
+      source=#Source#,
+      author=#Author#,
+      updateusername=#UpdateUserName#,
+      m_id=#M_ID#,
+      m_itemid=#M_ItemID#,
+      pictures=#Pictures#,
+      state=#State#,
+      hits=#Hits#,
+      pictureurl=#PictureURL#,
+      staytop=#StayTop#,
+      type=#Type#,
+      kind=#Kind#,
+      zngg=#Zngg#
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          id=#ID#
+        </isParameterPresent>
+      </dynamic>
+    </update>
+    <update id="BatchUpdate" parameterClass="UC_NewsList">
+      Update UC_NewsList Set
+      m_id=#M_ID#
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          m_itemid=#M_ItemID#
+        </isParameterPresent>
+      </dynamic>
+    </update>
+    <update id="Examine" parameterClass="UC_NewsList">
+      Update UC_NewsList Set
+      hits=#Hits#,
+      state=#State#
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          id=#ID#
+        </isParameterPresent>
+      </dynamic>
+    </update>
+    <delete id="Delete" parameterClass="int">
+      Delete From UC_NewsList
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          id=#ID#
+        </isParameterPresent>
+      </dynamic>
+    </delete>
+
+    <procedure id="PageFindAll" parameterMap="ParaPageFindAll" resultMap="SelectResult">
+      ProcPage
+    </procedure>
+    <procedure id="PageFindAllCount" parameterMap="ParaPageFindAll">
+      ProcPage
+    </procedure>
+  </statements>
+  <parameterMaps>
+    <parameterMap id="ParaPageFindAll" class="Hashtable">
+      <parameter property="tblName" column="" direction="Input" />
+      <parameter property="fldName" column="" direction="Input" />
+      <parameter property="PageSize" column="" direction="Input" />
+      <parameter property="PageIndex" column="" direction="Input" />
+      <parameter property="IsCount" column="" direction="Input" />
+      <parameter property="OrderType" column="" direction="Input" />
+      <parameter property="strWhere" column="" direction="Input" />
+    </parameterMap>
+  </parameterMaps>
+</sqlMap>

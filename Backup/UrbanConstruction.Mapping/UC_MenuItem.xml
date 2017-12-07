@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="UC_MenuItem" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="UC_MenuItem" type="UrbanConstruction.Model.UC_MenuItem, UrbanConstruction.Model" />
+  </alias>
+  <resultMaps>
+    <resultMap id="SelectResult" class="UC_MenuItem">
+      <result property="M_ItemID" column="m_itemid" />
+      <result property="M_ID" column="m_id" />
+      <result property="M_ItemName" column="m_itemname" />
+      <result property="Is_SysData" column="is_sysdata" />
+      <result property="Type" column="type" />
+      <result property="Status" column="status" />
+      <result property="Ordering" column="ordering" />
+      <result property="Url" column="url" />
+      <result property="LinkUrl" column="linkurl" />
+      <result property="Kind" column="kind"/>
+      <result property="PictureType" column="picturetype"/>
+      <result property="Is_Menu" column="is_menu"/>
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="Select" parameterClass="int" resultMap="SelectResult">
+      Select
+      m_itemid,
+      m_id,
+      m_itemname,
+      is_sysdata,
+      type,
+      status,
+      ordering,
+      url,
+      linkurl,
+      kind,picturetype,is_menu
+      From UC_MenuItem
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          m_itemid=#M_ItemID#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    <select id="SelectMax" parameterClass="int">
+      select  max(m_itemid)+1  From UC_MenuItem
+    </select>
+    
+    <select id="GetAllList" resultMap="SelectResult">
+      Select
+      m_itemid,
+      m_id,
+      m_itemname,
+      is_sysdata,
+      type,
+      status,
+      ordering,
+      url,
+      linkurl,
+      kind,picturetype,is_menu
+      From UC_MenuItem
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          $strWhere$
+        </isParameterPresent>
+      </dynamic>
+      order by ordering asc
+    </select>
+
+
+    <insert id="Insert" parameterClass="UC_MenuItem">
+      Insert Into UC_MenuItem (
+      m_itemid,
+      m_id,
+      m_itemname,
+      is_sysdata,
+      type,
+      status,
+      ordering,
+      url,
+      linkurl,
+      kind,picturetype,is_menu
+      )Values(
+      #M_ItemID#,
+      #M_ID#,
+      #M_ItemName#,
+      #Is_SysData#,
+      #Type#,
+      #Status#,
+      #Ordering#,
+      #Url#,
+      #LinkUrl#,
+      #Kind#,#PictureType#,#Is_Menu#
+      )
+    </insert>
+
+    <update id="Update" parameterClass="UC_MenuItem">
+      Update UC_MenuItem Set
+      m_itemid=#M_ItemID#,
+      m_id=#M_ID#,
+      m_itemname=#M_ItemName#,
+      is_sysdata=#Is_SysData#,
+      type=#Type#,
+      status=#Status#,
+      ordering=#Ordering#,
+      url=#Url#,
+      linkurl=#LinkUrl#,
+      kind=#Kind#,
+      picturetype=#PictureType#,
+      is_menu=#Is_Menu#
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          m_itemid=#M_ItemID#
+        </isParameterPresent>
+      </dynamic>
+    </update>
+
+    <delete id="Delete" parameterClass="int">
+      Delete From UC_MenuItem
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          m_itemid=#M_ItemID#
+        </isParameterPresent>
+      </dynamic>
+    </delete>
+    <procedure id="PageFindAll" parameterMap="ParaPageFindAll" resultMap="SelectResult">
+      ProcPage
+    </procedure>
+    <procedure id="PageFindAllCount" parameterMap="ParaPageFindAll">
+      ProcPage
+    </procedure>
+  </statements>
+  <parameterMaps>
+    <parameterMap id="ParaPageFindAll" class="Hashtable">
+      <parameter property="tblName" column="" direction="Input" />
+      <parameter property="fldName" column="" direction="Input" />
+      <parameter property="PageSize" column="" direction="Input" />
+      <parameter property="PageIndex" column="" direction="Input" />
+      <parameter property="IsCount" column="" direction="Input" />
+      <parameter property="OrderType" column="" direction="Input" />
+      <parameter property="strWhere" column="" direction="Input" />
+    </parameterMap>
+  </parameterMaps>
+</sqlMap>

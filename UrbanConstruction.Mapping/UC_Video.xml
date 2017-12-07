@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="UC_Video" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="UC_Video" type="UrbanConstruction.Model.UC_Video, UrbanConstruction.Model" />
+  </alias>
+  <resultMaps>
+    <resultMap id="SelectResult" class="UC_Video">
+      <result property="VideoID" column="videoid" />
+      <result property="VideoName" column="videoname" />
+      <result property="VideoURL" column="videourl" />
+      <result property="AddTime" column="addtime" />
+      <result property="State" column="state" />
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="FindById" parameterClass="int" resultMap="SelectResult">
+      Select
+      videoid,
+      videoname,
+      videourl,
+      addtime,
+      state
+      From UC_Video
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          videoid=#VideoID#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+
+    <insert id="Insert" parameterClass="UC_Video">
+      Insert Into UC_Video (
+      videoname,
+      videourl,
+      addtime,
+      state
+      )Values(
+      #VideoName#,
+      #VideoURL#,
+      #AddTime#,
+      #State#
+      )
+    </insert>
+
+    <update id="Update" parameterClass="UC_Video">
+      Update UC_Video Set
+      videoname=#VideoName#,
+      videourl=#VideoURL#,
+      addtime=#AddTime#,
+      state=#State#
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          videoid=#VideoID#
+        </isParameterPresent>
+      </dynamic>
+    </update>
+
+    <delete id="Delete" parameterClass="int">
+      Delete From UC_Video
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          videoid=#VideoID#
+        </isParameterPresent>
+      </dynamic>
+    </delete>
+
+    <procedure id="PageFindAll" parameterMap="ParaPageFindAll" resultMap="SelectResult">
+      ProcPage
+    </procedure>
+    <procedure id="PageFindAllCount" parameterMap="ParaPageFindAll">
+      ProcPage
+    </procedure>
+  </statements>
+  <parameterMaps>
+    <parameterMap id="ParaPageFindAll" class="Hashtable">
+      <parameter property="tblName" column="" direction="Input" />
+      <parameter property="fldName" column="" direction="Input" />
+      <parameter property="PageSize" column="" direction="Input" />
+      <parameter property="PageIndex" column="" direction="Input" />
+      <parameter property="IsCount" column="" direction="Input" />
+      <parameter property="OrderType" column="" direction="Input" />
+      <parameter property="strWhere" column="" direction="Input" />
+    </parameterMap>
+  </parameterMaps>
+</sqlMap>
