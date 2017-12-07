@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="middle">
-        <!--S中间内容区域-->
+        <!--S中间内容区域 -->
         <p class="dw">
             您现在的位置： <a href="index.aspx">首页</a>&nbsp;&nbsp;<span>&gt;&gt;</span>&nbsp;&nbsp;<%=news.Title.ToString() %></p>
         <div class="List">
